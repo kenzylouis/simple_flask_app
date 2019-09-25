@@ -22,3 +22,11 @@ export FLASK_DEBUG=1
 In Flask the views are handled by Templates. (views = templates)
 they take as input a set of variables call context and return HTML
 create a template folder. Flask always look for a set of folder and templates is one of them.
+
+#### render template
+- Create an index.html file under the newly created templates directory
+- update you app to "render_template('<the_index_html_file>')"
+
+
+
+

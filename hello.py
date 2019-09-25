@@ -1,10 +1,10 @@
-from flask import Flask, escape
+from flask import Flask, escape, render_template
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return "Index Page"
+    return render_template('index.html')
 
 @app.route('/hello')
 def hello_world():
