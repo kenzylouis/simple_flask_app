@@ -1,4 +1,4 @@
-from flask import Flask, escape, render_template, request, redirect, url_for
+from flask import Flask, escape, render_template, request, redirect, url_for, make_response
 
 app = Flask(__name__)
 
@@ -37,14 +37,26 @@ def show_subpath(subpath):
 #     last_name = request.args.get('last_name')
 #     return f'Fist Name: {first_name}, Last Name: {last_name}'
 
+# @app.route('/form', methods=['GET', 'POST'])
+# def form():
+#     if request.method == 'POST':
+#         first_name = request.values.get('first_name')
+#         last_name = request.values.get('last_name')
+#         return redirect(url_for('registered'))
+#     return render_template('form.html')
+
+## with cookie
 @app.route('/form', methods=['GET', 'POST'])
 def form():
     if request.method == 'POST':
         first_name = request.values.get('first_name')
         last_name = request.values.get('last_name')
-        return redirect(url_for('registered'))
+        response = make_response(redirect(url_for('registered')))
+        response.set_cookie('first_name', first_name)
+        return response
     return render_template('form.html')
 
 @app.route('/thankyou')
 def registered():
-    return 'Thank you!'
+    first_name = request.cookies.get('first_name')
+    return f'Thank you, {first_name}!'

@@ -72,3 +72,11 @@ in the view, you could use ```first_name = request.args.['first_name']``` for th
 request.values.get reads both GET and POST, really convenient
 
 it is good practice to redirect a user to another route after he fills out the form, because the browser cache the values, and the recored can be recreated over an over again. 
+
+### Cookies and Sessions
+HTTP is a stateless protocol, the server sees each HTTP page as a standalone operation. No history. 
+
+that's why cookies are used.
+
+- cookies: it is a piece of data that the server save on your compute to reuse information about you.vthis is how it works: cookies are set in one page and are available either when you reload the page or go to another page. when you 1st set your cookie, you won't be able to see it in the 1st page. Cookies are unsecure and sessions come to the rescue
+- sessions: randomliy generated string saved on your compute and points back to the data on the server. the data on the website is also encrypted, hard to decode
