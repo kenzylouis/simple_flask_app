@@ -1,4 +1,4 @@
-from flask import Flask, escape, render_template, request
+from flask import Flask, escape, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
@@ -42,5 +42,9 @@ def form():
     if request.method == 'POST':
         first_name = request.values.get('first_name')
         last_name = request.values.get('last_name')
-        return f'Fist Name: {first_name}, Last Name: {last_name}'
+        return redirect(url_for('registered'))
     return render_template('form.html')
+
+@app.route('/thankyou')
+def registered():
+    return 'Thank you!'

@@ -69,3 +69,6 @@ in the view, you could use ```first_name = request.args.['first_name']``` for th
 |requests cached by browser|Requests not cached by browser|
 -------------------------
 
+request.values.get reads both GET and POST, really convenient
+
+it is good practice to redirect a user to another route after he fills out the form, because the browser cache the values, and the recored can be recreated over an over again. 
