@@ -80,3 +80,6 @@ that's why cookies are used.
 
 - cookies: it is a piece of data that the server save on your compute to reuse information about you.vthis is how it works: cookies are set in one page and are available either when you reload the page or go to another page. when you 1st set your cookie, you won't be able to see it in the 1st page. Cookies are unsecure and sessions come to the rescue
 - sessions: randomliy generated string saved on your compute and points back to the data on the server. the data on the website is also encrypted, hard to decode
+
+you have to have randomly generate secret to encrypt the cookie
+you can generate one : python -c "import os; print(os.urandom(16))"

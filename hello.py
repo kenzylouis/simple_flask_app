@@ -1,6 +1,9 @@
-from flask import Flask, escape, render_template, request, redirect, url_for, make_response
+from flask import Flask, escape, render_template, request, redirect, url_for, session
 
 app = Flask(__name__)
+
+# app.secret_key = 'my-secret-key'
+app.secret_key = '\x90m\x87\x8cOg)\xe6\x98I\x99\x1d\xc3\xd0\xe8\xef'
 
 @app.route('/')
 def index():
@@ -51,12 +54,11 @@ def form():
     if request.method == 'POST':
         first_name = request.values.get('first_name')
         last_name = request.values.get('last_name')
-        response = make_response(redirect(url_for('registered')))
-        response.set_cookie('first_name', first_name)
-        return response
+        session['first_name'] = first_name
+        return redirect(url_for('registered'))
     return render_template('form.html')
 
 @app.route('/thankyou')
 def registered():
-    first_name = request.cookies.get('first_name')
+    first_name = session.get('first_name')
     return f'Thank you, {first_name}!'
