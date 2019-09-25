@@ -3,7 +3,7 @@ from flask import Flask, escape, render_template, request, redirect, url_for, se
 app = Flask(__name__)
 
 # app.secret_key = 'my-secret-key'
-app.secret_key = '\x90m\x87\x8cOg)\xe6\x98I\x99\x1d\xc3\xd0\xe8\xef'
+app.config.from_pyfile('settings.py')
 
 @app.route('/')
 def index():
