@@ -27,6 +27,10 @@ create a template folder. Flask always look for a set of folder and templates is
 - Create an index.html file under the newly created templates directory
 - update you app to "render_template('<the_index_html_file>')"
 
+#### passing context to template
+- Create an hello.html file under the templates directory
+- create a Jinja variable in the HTML content of hello.html
+- update you app to "render_template('<the_index_html_file>', '<the_variable_name>')" (in my case it is the post.html)
 
 
 
