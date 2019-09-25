@@ -40,3 +40,15 @@ create a template folder. Flask always look for a set of folder and templates is
 ### The static folder
 - files dont need to be change by our controller- Presentation centric files : like CSS, JavaScript
 - Create a static directory, then update the index file
+
+### Extending templates (DRY: Don't Repeat Yourself)
+
+(parent template, extended template)
+- for create a base template under the template folder.
+- 2 more steps to make your your styles available to all other templates
+1. in the template that extends the base, in the 1st line, extend the base
+```{% extends "base.html" %}```
+2.  - in the base template insert a directive to tell base where to render the content from any child template
+```{% block content %}{% end block %}```
+    - in the child template, surround the content with
+    ```{% block content %}<content_here>{% endblock %}```
