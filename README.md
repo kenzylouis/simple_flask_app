@@ -35,6 +35,4 @@ create a template folder. Flask always look for a set of folder and templates is
 ### Adding link for other pages: url_for
 
 - add an HTML anchor (<a>) to index
-
-
-
+- URL_for provided by flask to tie your URL to a function name instead of a route, as route can change a lot

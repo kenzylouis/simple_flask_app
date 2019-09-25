@@ -1,3 +1,5 @@
 <h1>Index Page</h1>
 
-<a href="/hello/klouis">Hello</a>
+<a href="{{ url_for('show_post', post_id=2) }}">Show post</a>
+<br>
+<a href="{{ url_for('hello', name="Zazoo") }}">Hello</a>
