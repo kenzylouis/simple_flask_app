@@ -1,4 +1,4 @@
-from flask import Flask, escape, render_template
+from flask import Flask, escape, render_template, request
 
 app = Flask(__name__)
 
@@ -30,3 +30,17 @@ def show_post(post_id):
 def show_subpath(subpath):
     # show the subpath after /path/
     return 'Subpath %s' % escape(subpath)
+
+# @app.route('/form', methods=['GET'])
+# def form():
+#     first_name = request.args.get('first_name')
+#     last_name = request.args.get('last_name')
+#     return f'Fist Name: {first_name}, Last Name: {last_name}'
+
+@app.route('/form', methods=['GET'])
+def form():
+    if request.args.get('submit'):
+        first_name = request.args.get('first_name')
+        last_name = request.args.get('last_name')
+        return f'Fist Name: {first_name}, Last Name: {last_name}'
+    return render_template('form.html')

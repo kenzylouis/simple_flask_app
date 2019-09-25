@@ -52,3 +52,20 @@ create a template folder. Flask always look for a set of folder and templates is
 ```{% block content %}{% end block %}```
     - in the child template, surround the content with
     ```{% block content %}<content_here>{% endblock %}```
+
+### Forms and HTTP Verb (the Get and Post Methods):
+- the GET verb reads the URL.
+- You can pass variable in the URL. They are called field-value pairs of query parameters and they all starts after the "?" in the URL
+
+in the view, you could use ```first_name = request.args.['first_name']``` for the function but if a parameter in not pass you will get an http bad request. use the get ```first_name = request.args.get('first_name')```
+
+#### Key difference between Get and Post
+
+-------------------------
+| GET       |       POST|
+-------------------------
+| Data passed in URL| Data in request body|
+| Data limit| No data limit|
+|requests cached by browser|Requests not cached by browser|
+-------------------------
+
