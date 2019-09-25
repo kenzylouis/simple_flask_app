@@ -36,3 +36,7 @@ create a template folder. Flask always look for a set of folder and templates is
 
 - add an HTML anchor (<a>) to index
 - URL_for provided by flask to tie your URL to a function name instead of a route, as route can change a lot
+
+### The static folder
+- files dont need to be change by our controller- Presentation centric files : like CSS, JavaScript
+- Create a static directory, then update the index file
