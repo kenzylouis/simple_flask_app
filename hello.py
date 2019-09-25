@@ -40,7 +40,7 @@ def show_subpath(subpath):
 @app.route('/form', methods=['GET', 'POST'])
 def form():
     if request.method == 'POST':
-        first_name = request.form.get('first_name')
-        last_name = request.form.get('last_name')
+        first_name = request.values.get('first_name')
+        last_name = request.values.get('last_name')
         return f'Fist Name: {first_name}, Last Name: {last_name}'
     return render_template('form.html')
