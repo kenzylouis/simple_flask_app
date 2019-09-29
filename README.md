@@ -83,3 +83,45 @@ that's why cookies are used.
 
 you have to have randomly generate secret to encrypt the cookie
 you can generate one : python -c "import os; print(os.urandom(16))"
+
+### Databases
+big siloes that can store millions of records
+deveided into small logical sileos call table
+Tables have a specific structure called Schema describimg name, type, lenght of column
+Id is added by the db
+once data is save in the DB you can run queries against it
+queries are data operations to retrieve one or more data macthing a criteria.
+if the email is unique, we can make the email column a unique key 
+Database create index to help speed up record search 
+
+### CRUD
+
+C: Create - R: Read - U: Update - D: Delete
+
+In MySQL this is the equivalent query for CRUD
+Create: Insert
+Read: Select 
+Update: Update
+Delete: Delete
+
+Install mysql
+```brew install mysql```
+Secure MySQL
+```mysql_secure_installation```
+No to Validate Password Plugin
+Remove the Anonymous user login
+and remote root user login
+remove the test database
+reload the priviledge
+
+with MariaDB
+```mysqladmin --user=root password 'password'```
+
+
+### ORM: Object Relational Mapper
+
+MVC, if templates are for Views, Models are files that deal with anything related to connecting/talking to the Database. That model file leverage ORM which converts data rows into objects. so when accessing user in that route, we would request a list of object from the model, not issueing SQL command, if anything change DB structue or go to another DB, we only change the Models files not the application:
+
+```users = User.query.filter_by(live=1)```
+
+
