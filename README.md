@@ -125,3 +125,62 @@ MVC, if templates are for Views, Models are files that deal with anything relate
 ```users = User.query.filter_by(live=1)```
 
 
+## Application Factory
+
+Application factory design pattern.
+
+Usually  we have modules in the application that do different things and we seperates them this way to create order.
+
+A file like `app.py` that creates an instance of the application. 
+
+
+## Blueprints
+
+Building pives of app focus on specific areas:
+
+ex. if we were building twitter: user - feed - relationship (would be different modules responsible for different part of the applations). Each would have theor own model, controller and views
+
+in flask views.py for controller, template for the views and model for model, they have their test and all is grouped under one app (user for ex.)
+
+
+### Migrations
+
+After creating models that have classes that represent schemas in your database, need to apply the changes to the DB
+
+for the 1st time run ```flask db init```
+
+output
+```shell
+/Users/klouis/projects/flask-visitor-counter/venv/lib/python3.7/site-packages/flask_sqlalchemy/__init__.py:835: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True or False to suppress this warning.
+  'SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and '
+  Creating directory /Users/klouis/projects/flask-visitor-counter/migrations ...  done
+  Creating directory /Users/klouis/projects/flask-visitor-counter/migrations/versions ...  done
+  Generating /Users/klouis/projects/flask-visitor-counter/migrations/script.py.mako ...  done
+  Generating /Users/klouis/projects/flask-visitor-counter/migrations/env.py ...  done
+  Generating /Users/klouis/projects/flask-visitor-counter/migrations/README ...  done
+  Generating /Users/klouis/projects/flask-visitor-counter/migrations/alembic.ini ...  done
+  Please edit configuration/connection/logging settings in '/Users/klouis/projects/flask-visitor-counter/migrations/alembic.ini' before proceeding.
+```
+
+then run ```flask db migrate```
+
+output
+```shell
+/Users/klouis/projects/flask-visitor-counter/venv/lib/python3.7/site-packages/flask_sqlalchemy/__init__.py:835: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True or False to suppress this warning.
+  'SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and '
+INFO  [alembic.runtime.migration] Context impl MySQLImpl.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+INFO  [alembic.autogenerate.compare] Detected added table 'counter'
+  Generating /Users/klouis/projects/flask-visitor-counter/migrations/versions/e3cfac093eb3_.py ...  done
+  ```
+
+  then run ```flask db upgrade```
+
+output
+```shell
+  /Users/klouis/projects/flask-visitor-counter/venv/lib/python3.7/site-packages/flask_sqlalchemy/__init__.py:835: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True or False to suppress this warning.
+  'SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and '
+INFO  [alembic.runtime.migration] Context impl MySQLImpl.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade  -> e3cfac093eb3, empty message
+```
