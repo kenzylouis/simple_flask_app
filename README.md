@@ -140,8 +140,14 @@ Building pives of app focus on specific areas:
 
 ex. if we were building twitter: user - feed - relationship (would be different modules responsible for different part of the applations). Each would have theor own model, controller and views
 
-in flask views.py for controller, template for the views and model for model, they have their test and all is grouped under one app (user for ex.)
+in flask views.py for controller, template for the views and model for model, they have their test and all is grouped under one app ('user' app for ex.)
 
+
+### Models
+
+Models have classes where each class represent a table in the db.
+
+A class is usually an extension of the SQLAlchemy Models class
 
 ### Migrations
 
