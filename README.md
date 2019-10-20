@@ -81,4 +81,112 @@ that's why cookies are used.
 - sessions: randomliy generated string saved on your compute and points back to the data on the server. the data on the website is also encrypted, hard to decode
 
 you have to have randomly generate secret to encrypt the cookie
-you can generate one : python -c "import os; print(os.urandom(16))"
+you can generate one : `python -c "import os; print(os.urandom(16))"`
+
+
+### Databases
+big siloes that can store millions of records
+deveided into small logical sileos call table
+Tables have a specific structure called Schema describimg name, type, lenght of column
+Id is added by the db
+once data is save in the DB you can run queries against it
+queries are data operations to retrieve one or more data macthing a criteria.
+if the email is unique, we can make the email column a unique key 
+Database create index to help speed up record search 
+
+### CRUD
+
+C: Create - R: Read - U: Update - D: Delete
+
+In MySQL this is the equivalent query for CRUD
+Create: Insert
+Read: Select 
+Update: Update
+Delete: Delete
+
+Install mysql
+```brew install mysql```
+Secure MySQL
+```mysql_secure_installation```
+No to Validate Password Plugin
+Remove the Anonymous user login
+and remote root user login
+remove the test database
+reload the priviledge
+
+with MariaDB
+```mysqladmin --user=root password 'password'```
+
+
+### ORM: Object Relational Mapper
+
+MVC, if templates are for Views, Models are files that deal with anything related to connecting/talking to the Database. That model file leverage ORM which converts data rows into objects. so when accessing user in that route, we would request a list of object from the model, not issueing SQL command, if anything change DB structue or go to another DB, we only change the Models files not the application:
+
+```users = User.query.filter_by(live=1)```
+
+
+## Application Factory
+
+Application factory design pattern.
+
+Usually  we have modules in the application that do different things and we seperates them this way to create order.
+
+A file like `app.py` that creates an instance of the application. 
+
+
+## Blueprints
+
+Building pives of app focus on specific areas:
+
+ex. if we were building twitter: user - feed - relationship (would be different modules responsible for different part of the applations). Each would have theor own model, controller and views
+
+in flask views.py for controller, template for the views and model for model, they have their test and all is grouped under one app ('user' app for ex.)
+
+
+### Models
+
+Models have classes where each class represent a table in the db.
+
+A class is usually an extension of the SQLAlchemy Models class
+
+### Migrations
+
+After creating models that have classes that represent schemas in your database, need to apply the changes to the DB
+
+for the 1st time run ```flask db init```
+
+output
+```shell
+/Users/klouis/projects/flask-visitor-counter/venv/lib/python3.7/site-packages/flask_sqlalchemy/__init__.py:835: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True or False to suppress this warning.
+  'SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and '
+  Creating directory /Users/klouis/projects/flask-visitor-counter/migrations ...  done
+  Creating directory /Users/klouis/projects/flask-visitor-counter/migrations/versions ...  done
+  Generating /Users/klouis/projects/flask-visitor-counter/migrations/script.py.mako ...  done
+  Generating /Users/klouis/projects/flask-visitor-counter/migrations/env.py ...  done
+  Generating /Users/klouis/projects/flask-visitor-counter/migrations/README ...  done
+  Generating /Users/klouis/projects/flask-visitor-counter/migrations/alembic.ini ...  done
+  Please edit configuration/connection/logging settings in '/Users/klouis/projects/flask-visitor-counter/migrations/alembic.ini' before proceeding.
+```
+
+then run ```flask db migrate```
+
+output
+```shell
+/Users/klouis/projects/flask-visitor-counter/venv/lib/python3.7/site-packages/flask_sqlalchemy/__init__.py:835: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True or False to suppress this warning.
+  'SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and '
+INFO  [alembic.runtime.migration] Context impl MySQLImpl.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+INFO  [alembic.autogenerate.compare] Detected added table 'counter'
+  Generating /Users/klouis/projects/flask-visitor-counter/migrations/versions/e3cfac093eb3_.py ...  done
+  ```
+
+  then run ```flask db upgrade```
+
+output
+```shell
+  /Users/klouis/projects/flask-visitor-counter/venv/lib/python3.7/site-packages/flask_sqlalchemy/__init__.py:835: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True or False to suppress this warning.
+  'SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and '
+INFO  [alembic.runtime.migration] Context impl MySQLImpl.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade  -> e3cfac093eb3, empty message
+```
