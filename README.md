@@ -61,13 +61,12 @@ in the view, you could use ```first_name = request.args.['first_name']``` for th
 
 #### Key difference between Get and Post
 
--------------------------
 | GET       |       POST|
--------------------------
+------------|-------------
 | Data passed in URL| Data in request body|
 | Data limit| No data limit|
 |requests cached by browser|Requests not cached by browser|
--------------------------
+------------|-------------
 
 request.values.get reads both GET and POST, really convenient
 
