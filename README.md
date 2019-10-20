@@ -61,13 +61,12 @@ in the view, you could use ```first_name = request.args.['first_name']``` for th
 
 #### Key difference between Get and Post
 
--------------------------
 | GET       |       POST|
--------------------------
+------------|-------------
 | Data passed in URL| Data in request body|
 | Data limit| No data limit|
 |requests cached by browser|Requests not cached by browser|
--------------------------
+------------|-------------
 
 request.values.get reads both GET and POST, really convenient
 
@@ -82,7 +81,8 @@ that's why cookies are used.
 - sessions: randomliy generated string saved on your compute and points back to the data on the server. the data on the website is also encrypted, hard to decode
 
 you have to have randomly generate secret to encrypt the cookie
-you can generate one : python -c "import os; print(os.urandom(16))"
+you can generate one : `python -c "import os; print(os.urandom(16))"`
+
 
 ### Databases
 big siloes that can store millions of records
